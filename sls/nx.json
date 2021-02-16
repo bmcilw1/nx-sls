@@ -17,6 +17,7 @@
   },
   "projects": {
     "sls-app": { "tags": [] },
-    "sls-app-e2e": { "tags": [], "implicitDependencies": ["sls-app"] }
+    "sls-app-e2e": { "tags": [], "implicitDependencies": ["sls-app"] },
+    "sls-nest": { "tags": [] }
   }
 }

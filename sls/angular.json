@@ -145,6 +145,57 @@
           }
         }
       }
+    },
+    "sls-nest": {
+      "root": "apps/sls-nest",
+      "sourceRoot": "apps/sls-nest/src",
+      "projectType": "application",
+      "prefix": "sls-nest",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/sls-nest",
+            "main": "apps/sls-nest/src/main.ts",
+            "tsConfig": "apps/sls-nest/tsconfig.app.json",
+            "assets": ["apps/sls-nest/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/sls-nest/src/environments/environment.ts",
+                  "with": "apps/sls-nest/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "sls-nest:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/sls-nest/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/sls-nest"],
+          "options": {
+            "jestConfig": "apps/sls-nest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

@@ -1,3 +1,3 @@
 module.exports = {
-  projects: ['<rootDir>/apps/sls-app'],
+  projects: ['<rootDir>/apps/sls-app', '<rootDir>/apps/sls-nest'],
 };
