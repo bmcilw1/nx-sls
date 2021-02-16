@@ -15,7 +15,6 @@ custom:
 functions:
   sms:
     handler: apps/sls-nest/src/handler.handler
-    description: Send SMS text
     events:
       - http:
           method: any
