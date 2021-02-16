@@ -10,11 +10,13 @@ nx generate @nrwl/nest:application sls-nest
 
 To reproduce error
 
-- cd into the sls directory
+- `cd` into the sls directory
 
 - Run `sls deploy`
 
 - Ping given route with a GET at `/api`
+
+- View the error in the response and in the logs
 
 <p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 

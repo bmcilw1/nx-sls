@@ -13,7 +13,7 @@ custom:
     packExternalModulesMaxBuffer: 204800
 
 functions:
-  sms:
+  sls-nest:
     handler: apps/sls-nest/src/handler.handler
     events:
       - http:
