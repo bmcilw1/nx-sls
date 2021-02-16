@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
+    }
+  },
+  "defaultProject": "sls-app",
+  "projects": {
+    "sls-app": {
+      "projectType": "application",
+      "root": "apps/sls-app",
+      "sourceRoot": "apps/sls-app/src",
+      "prefix": "sls",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/sls-app",
+            "index": "apps/sls-app/src/index.html",
+            "main": "apps/sls-app/src/main.ts",
+            "polyfills": "apps/sls-app/src/polyfills.ts",
+            "tsConfig": "apps/sls-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/sls-app/src/favicon.ico",
+              "apps/sls-app/src/assets"
+            ],
+            "styles": ["apps/sls-app/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/sls-app/src/environments/environment.ts",
+                  "with": "apps/sls-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sls-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sls-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sls-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/sls-app/src/**/*.ts",
+              "apps/sls-app/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/sls-app"],
+          "options": {
+            "jestConfig": "apps/sls-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "sls-app-e2e": {
+      "root": "apps/sls-app-e2e",
+      "sourceRoot": "apps/sls-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/sls-app-e2e/cypress.json",
+            "tsConfig": "apps/sls-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "sls-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sls-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/sls-app-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
