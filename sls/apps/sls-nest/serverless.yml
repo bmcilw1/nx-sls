@@ -1,0 +1,26 @@
+service: sls-nest
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'test'}
+  region: us-east-2
+
+custom:
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    includeModules: true
+    packager: 'npm'
+    packExternalModulesMaxBuffer: 204800
+
+functions:
+  sms:
+    handler: apps/sls-nest/src/handler.handler
+    description: Send SMS text
+    events:
+      - http:
+          method: any
+          path: /{any+}
+          cors: true
+
+plugins:
+  - serverless-webpack
