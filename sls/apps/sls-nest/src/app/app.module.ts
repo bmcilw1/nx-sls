@@ -16,6 +16,6 @@ import { AppService } from './app.service';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [{ provide: AppService, useFactory: () => new AppService() }],
 })
 export class AppModule {}
