@@ -9,8 +9,9 @@ export class AppController {
   private readonly logger = new Logger(AppController.name);
 
   @Get()
-  getData(@Query() phoneNumber: string, @Query() message: string) {
-    this.logger.log(`phoneNumber: ${phoneNumber} message: ${message}`);
-    return this.appService.getData();
+  getData(@Query() query: { message: string; phoneNumber: string }) {
+    const msg = `phoneNumber: ${query.phoneNumber} message: ${query.message}`;
+    this.logger.log(msg);
+    return { msg };
   }
 }
