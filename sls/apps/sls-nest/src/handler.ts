@@ -1,5 +1,4 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app/app.module';
 import { json } from 'express';
 import { Logger } from 'nestjs-pino';
 import { Server } from 'http';
@@ -8,6 +7,7 @@ import { Handler, Context, APIGatewayProxyEvent } from 'aws-lambda';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { eventContext } from 'aws-serverless-express/middleware';
 import { environment } from './environments/environment';
+import { AppModule } from './app/app.module';
 
 // NOTE: If you get ERR_CONTENT_DECODING_FAILED in your browser, this is likely
 // due to a compressed response (e.g. gzip) which has not been handled correctly
