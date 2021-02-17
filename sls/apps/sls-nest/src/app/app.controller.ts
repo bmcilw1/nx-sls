@@ -12,6 +12,6 @@ export class AppController {
   getData(@Query() query: { message: string; phoneNumber: string }) {
     const msg = `phoneNumber: ${query.phoneNumber} message: ${query.message}`;
     this.logger.log(msg);
-    return { msg };
+    return this.appService.getData();
   }
 }
