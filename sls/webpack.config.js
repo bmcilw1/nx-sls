@@ -9,7 +9,7 @@ module.exports = {
   entry: slsWebpack.lib.entries,
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx'],
-    plugins: [new tsconfigPathsPlugin()],
+    plugins: [new tsconfigPathsPlugin({ configFile: 'tsconfig.base.json' })],
   },
   target: 'node',
   module: {
