@@ -1,21 +1,16 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
+import { environment } from './environments/environment';
+import { bootstrapServer, cachedServer } from './handler';
 
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-
-import { AppModule } from './app/app.module';
-
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+async function startServer() {
   const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
-  const port = process.env.PORT || 3333;
-  await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
+  await bootstrapServer(globalPrefix);
+
+  const port = environment.port;
+  const host = environment.host;
+
+  cachedServer.listen(port, host, () => {
+    console.log(`Listening at ${host}:${port}/${globalPrefix}`);
   });
 }
 
-bootstrap();
+startServer();
