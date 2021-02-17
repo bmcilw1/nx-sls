@@ -5,6 +5,7 @@
     "types": ["node"],
     "emitDecoratorMetadata": true,
     "target": "es2015",
+    "declaration": true,
   },
   "exclude": ["**/*.spec.ts"],
   "include": ["**/*.ts"]
