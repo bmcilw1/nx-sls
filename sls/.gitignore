@@ -4,6 +4,8 @@
 /dist
 /tmp
 /out-tsc
+/.serverless
+/.webpack
 
 # dependencies
 /node_modules
