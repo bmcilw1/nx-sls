@@ -5,21 +5,14 @@ provider:
   stage: ${opt:stage, 'test'}
   region: us-east-2
 
-custom:
-  webpack:
-    webpackConfig: "webpack.config.js"
-    includeModules: true
-    packager: "npm"
-    packExternalModulesMaxBuffer: 204800
-
 functions:
   sls-nest:
-    handler: apps/sls-nest/src/handler.handler
+    handler: dist/apps/sls-nest/main.handler
     events:
       - http:
           method: any
           path: /{any+}
           cors: true
 
-plugins:
-  - serverless-webpack
+package:
+  individually: true
