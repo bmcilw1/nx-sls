@@ -16,3 +16,6 @@ functions:
 
 package:
   individually: true
+
+plugins:
+  - serverless-plugin-optimize
